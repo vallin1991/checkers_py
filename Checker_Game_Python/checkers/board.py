@@ -1,6 +1,6 @@
 import pygame
 
-from checkers.piece import Piece
+from .piece import Piece
 from .constants import BLACK, ROWS, RED, SQUARE_SIZE, COLS, WHITE
 
 
@@ -30,8 +30,8 @@ class Board:
                         self.board[row].append(Piece(row, col, RED))
                     else:
                         self.board[row].append(0)
-                    else:
-                        self.board[row].append(0)
+                else:
+                    self.board[row].append(0)
 
     def draw(self, win):
         self.draw_squares(win)
