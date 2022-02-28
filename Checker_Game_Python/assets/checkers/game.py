@@ -1,7 +1,6 @@
-from operator import truediv
-from xml.sax.handler import property_lexical_handler
+
 import pygame
-from .constants import RED, WHITE
+from .constants import BLUE, RED, SQUARE_SIZE, WHITE, BLUE
 from checkers.board import Board
 
 
@@ -12,6 +11,7 @@ class Game:
 
     def update(self):
         self.board.draw(self.win)
+        self.draw_valid_moves(self.board.valid_moves)
         pygame.display.update()
 
     def _init(self):
@@ -47,6 +47,12 @@ class Game:
         else:
             return False
         return True
+
+    def draw_valid_moves(self, moves):
+        for move in moves:
+            row, col = move
+            pygame.draw.circle(self.win, BLUE, (row * SQUARE_SIZE -
+                               SQUARE_SIZE//2, col * SQUARE_SIZE - SQUARE_SIZE//2), 15)
 
     def change_turn(self):
         if self.turn == RED:
